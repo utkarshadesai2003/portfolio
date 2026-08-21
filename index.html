@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utkarsha Desai — Network Engineer × Frontend Developer</title>
+<meta name="description" content="Portfolio of Utkarsha Desai — CCNA-certified networking fundamentals and React/TypeScript frontend development. Pune, Maharashtra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --bg:#0B1120; --surface:#121B2E; --surface2:#16223A; --border:#223252;
+    --text:#E9EEF7; --muted:#8FA0BE; --cyan:#45D9C7; --amber:#F5A742;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; line-height:1.6;}
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:rgba(69,217,199,.35);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); margin-bottom:8px;}
+  h1,h2,h3{font-family:'IBM Plex Mono',monospace; margin:0;}
+  section{scroll-margin-top:72px;}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; background:rgba(11,17,32,.85); backdrop-filter:blur(8px); border-bottom:1px solid var(--border);}
+  nav .inner{display:flex; justify-content:space-between; align-items:center; padding:16px 24px; max-width:1040px; margin:0 auto; flex-wrap:wrap; gap:10px;}
+  .brand{font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:15px;}
+  .brand span{color:var(--cyan);}
+  .nav-links{display:flex; gap:22px; list-style:none; margin:0; padding:0; font-family:'IBM Plex Mono',monospace; font-size:12.5px;}
+  .nav-links a{color:var(--muted); transition:color .2s;}
+  .nav-links a:hover{color:var(--cyan);}
+  .hamburger{display:none; font-size:20px; cursor:pointer; color:var(--text);}
+  .mobile-menu{display:none; flex-direction:column; gap:2px; border-top:1px solid var(--border); background:var(--surface);}
+  .mobile-menu a{padding:14px 24px; color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:13px; border-bottom:1px solid var(--border);}
+  @media (max-width:720px){
+    .nav-links{display:none;}
+    .hamburger{display:block;}
+    .mobile-menu.open{display:flex;}
+  }
+
+  /* HERO */
+  header.hero{padding:70px 24px 40px;}
+  .hero-inner{display:flex; gap:44px; align-items:center; flex-wrap:wrap; max-width:1040px; margin:0 auto;}
+  .hero-left{flex:1 1 380px;}
+  .tagline{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin-bottom:14px;}
+  .hero-left h1{font-size:clamp(30px,5vw,46px); line-height:1.15; font-weight:700; margin-bottom:16px;}
+  .hero-left p{color:var(--muted); font-size:15.5px; max-width:440px; margin-bottom:24px;}
+  .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:26px;}
+  .btn{font-family:'IBM Plex Mono',monospace; font-size:13px; padding:11px 20px; border-radius:6px; display:inline-flex; align-items:center; gap:7px; border:1px solid var(--border); transition:.2s;}
+  .btn-primary{background:var(--cyan); color:var(--bg); border-color:var(--cyan); font-weight:600;}
+  .btn-primary:hover{background:#5be5d4;}
+  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan);}
+  .terminal{background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px 18px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--cyan); max-width:460px; min-height:52px;}
+  .cursor{opacity:.7; animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .hero-right{flex:1 1 320px; display:flex; justify-content:center;}
+  #tracePath{stroke-dasharray:700; stroke-dashoffset:700; animation:draw 2.2s ease-out forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  /* SECTION */
+  .section{padding:64px 24px;}
+  .section h2{font-size:clamp(22px,3vw,30px); font-weight:600; margin-bottom:34px;}
+
+  /* CARD GRID */
+  .grid-2{display:flex; gap:20px; flex-wrap:wrap;}
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px; flex:1 1 280px;}
+  .card i{color:var(--cyan); font-size:20px; margin-bottom:10px; display:block;}
+  .card h3{font-size:15px; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:13.5px; margin:0;}
+
+  /* SKILLS */
+  .skill-group{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; flex:1 1 240px;}
+  .skill-head{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .skill-icon{width:34px; height:34px; border-radius:8px; display:grid; place-items:center; background:var(--surface2);}
+  .skill-head span{font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{font-size:12.5px; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:5px 11px;}
+
+  /* PROJECTS */
+  .proj-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px;}
+  .proj-card{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:22px; transition:.2s;}
+  .proj-card:hover{border-color:rgba(69,217,199,.55); transform:translateY(-2px);}
+  .proj-node{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--amber); margin-bottom:10px;}
+  .proj-card h3{font-size:16px; margin-bottom:10px;}
+  .proj-card p{color:var(--muted); font-size:13.5px; margin-bottom:14px;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;}
+  .tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--cyan); border:1px solid rgba(69,217,199,.25); border-radius:4px; padding:3px 8px;}
+  .link-row{display:flex; gap:16px; font-family:'IBM Plex Mono',monospace; font-size:12.5px;}
+  .link-row a{color:var(--cyan); display:inline-flex; align-items:center; gap:5px;}
+  .link-row a:hover{text-decoration:underline;}
+  .link-row .disabled{color:var(--muted); font-style:italic;}
+
+  /* EXPERIENCE */
+  .exp-card{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:24px; margin-bottom:28px;}
+  .exp-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:12px;}
+  .exp-top h3{font-size:15px;}
+  .exp-date{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--cyan);}
+  .exp-card ul{margin:0; padding-left:18px; color:var(--muted); font-size:13.5px;}
+  .exp-card li{margin-bottom:6px;}
+  .cert-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .cert{display:flex; align-items:center; gap:8px; border:1px solid var(--border); border-radius:999px; padding:8px 14px; font-family:'IBM Plex Mono',monospace; font-size:12px;}
+  .cert i{color:var(--cyan);}
+
+  /* CONTACT */
+  #contact{border-top:1px solid var(--border);}
+  .contact-card{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:22px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted); display:flex; flex-direction:column; gap:12px; max-width:480px;}
+  .contact-card a, .contact-card span{display:flex; align-items:center; gap:10px;}
+  .contact-card i{color:var(--cyan); width:16px;}
+  .social-row{display:flex; gap:16px; margin-top:20px;}
+  .social-row a{width:38px; height:38px; border:1px solid var(--border); border-radius:8px; display:grid; place-items:center; color:var(--muted); transition:.2s;}
+  .social-row a:hover{color:var(--cyan); border-color:var(--cyan);}
+
+  footer{border-top:1px solid var(--border); padding:22px 24px; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="brand">utkarsha<span>.desai</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()"><i id="menuIcon" class="fas fa-bars"></i></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="toggleMenu()">about</a>
+    <a href="#skills" onclick="toggleMenu()">skills</a>
+    <a href="#projects" onclick="toggleMenu()">projects</a>
+    <a href="#experience" onclick="toggleMenu()">experience</a>
+    <a href="#contact" onclick="toggleMenu()">contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="tagline">network engineer × frontend developer</div>
+      <h1>Utkarsha Santosh<br>Desai</h1>
+      <p>CCNA-certified networking fundamentals meet a year of shipping React interfaces. I build things that stay connected — from routing tables to component trees.</p>
+      <div class="btn-row">
+        <a href="#projects" class="btn btn-primary">View projects <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        <a href="resume.pdf" target="_blank" class="btn btn-ghost"><i class="fas fa-download"></i> Resume</a>
+      </div>
+      <div class="terminal">
+        <span id="terminalText"></span><span class="cursor">▌</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 520 260" width="100%" style="max-width:480px;">
+        <defs>
+          <linearGradient id="pathGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#45D9C7"/>
+            <stop offset="100%" stop-color="#F5A742"/>
+          </linearGradient>
+        </defs>
+        <g opacity="0.4">
+          <line x1="0" y1="10" x2="520" y2="10" stroke="#223252"/>
+          <line x1="0" y1="54" x2="520" y2="54" stroke="#223252"/>
+          <line x1="0" y1="98" x2="520" y2="98" stroke="#223252"/>
+          <line x1="0" y1="142" x2="520" y2="142" stroke="#223252"/>
+          <line x1="0" y1="186" x2="520" y2="186" stroke="#223252"/>
+          <line x1="0" y1="230" x2="520" y2="230" stroke="#223252"/>
+        </g>
+        <path id="tracePath" d="M 40 60 C 140 60, 140 200, 240 200 S 380 40, 480 100" fill="none" stroke="url(#pathGrad)" stroke-width="2.5"/>
+        <circle r="5" fill="#45D9C7">
+          <animateMotion dur="3.5s" repeatCount="indefinite" begin="2.3s">
+            <mpath xlink:href="#tracePath"/>
+          </animateMotion>
+        </circle>
+        <circle cx="40" cy="60" r="7" fill="#0B1120" stroke="#45D9C7" stroke-width="2"/>
+        <text x="40" y="40" fill="#E9EEF7" font-size="11" font-family="IBM Plex Mono, monospace" text-anchor="middle">NETWORK</text>
+        <text x="40" y="84" fill="#8FA0BE" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle">CCNA · TCP/IP</text>
+        <circle cx="480" cy="100" r="7" fill="#0B1120" stroke="#F5A742" stroke-width="2"/>
+        <text x="480" y="80" fill="#E9EEF7" font-size="11" font-family="IBM Plex Mono, monospace" text-anchor="middle">INTERFACE</text>
+        <text x="480" y="124" fill="#8FA0BE" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle">React · TypeScript</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="section wrap">
+  <div class="eyebrow">01 · About</div>
+  <h2>Two disciplines, one way of thinking</h2>
+  <div class="grid-2">
+    <div class="card">
+      <i class="fas fa-network-wired"></i>
+      <h3>Networking path</h3>
+      <p>Cisco Certified Network Associate with grounding in TCP/IP, routing &amp; switching, subnetting, DNS/DHCP, VLANs and the OSI model — I think in terms of paths, protocols, and points of failure.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-code"></i>
+      <h3>Frontend path</h3>
+      <p>A year building production React and TypeScript interfaces — integrating APIs, shipping reusable components, and caring about what happens on the other end of the connection.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section wrap">
+  <div class="eyebrow">02 · Skills</div>
+  <h2>Technical toolkit</h2>
+  <div class="grid-2">
+    <div class="skill-group">
+      <div class="skill-head"><div class="skill-icon"><i class="fas fa-diagram-project" style="color:#45D9C7;"></i></div><span>Networking</span></div>
+      <div class="chips">
+        <span class="chip">CCNA</span><span class="chip">TCP/IP</span><span class="chip">Routing &amp; Switching</span>
+        <span class="chip">LAN/WAN</span><span class="chip">IP Addressing</span><span class="chip">Subnetting</span>
+        <span class="chip">DNS</span><span class="chip">DHCP</span><span class="chip">VLANs</span>
+        <span class="chip">OSI Model</span><span class="chip">Network Troubleshooting</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-head"><div class="skill-icon"><i class="fas fa-laptop-code" style="color:#F5A742;"></i></div><span>Web Development</span></div>
+      <div class="chips">
+        <span class="chip">React.js</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span>
+        <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Tailwind CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-head"><div class="skill-icon"><i class="fas fa-microchip" style="color:#8B9BFF;"></i></div><span>Systems &amp; Tools</span></div>
+      <div class="chips">
+        <span class="chip">Linux</span><span class="chip">Windows</span><span class="chip">Git</span>
+        <span class="chip">GitHub</span><span class="chip">Docker</span><span class="chip">VS Code</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section wrap">
+  <div class="eyebrow">03 · Projects</div>
+  <h2>Selected work</h2>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <div class="proj-node">NODE_01</div>
+      <h3>MDM Construction Web Application</h3>
+      <p>Built dynamic React.js components integrated with REST APIs. Developed reusable UI components and enhanced overall application usability, including debugging network/API connectivity between frontend and backend services.</p>
+      <div class="tag-row">
+        <span class="tag">React.js</span><span class="tag">REST API</span><span class="tag">TypeScript</span>
+      </div>
+      <div class="link-row">
+        <a href="https://utkarshadesai2003.github.io/mdm_constraction-frontned-/" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Live Demo</a>
+        <a href="https://github.com/utkarshadesai2003/mdm_constraction-frontned-" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-node">NODE_02</div>
+      <h3>MDM Security Landing Page</h3>
+      <p>Responsive landing page built with HTML, CSS, JavaScript and TypeScript, using reusable UI sections and focused on secure, performant delivery of content.</p>
+      <div class="tag-row">
+        <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span>
+      </div>
+      <div class="link-row">
+        <a href="https://utkarshadesai2003.github.io/MDM_security-frontend-/" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Live Demo</a>
+        <a href="https://github.com/utkarshadesai2003/MDM_security-frontend-" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-node">NODE_03</div>
+      <h3>Malware Detection &amp; Classification System</h3>
+      <p>Machine learning-based system that analyzes malicious files using feature extraction and classification techniques, strengthening cybersecurity fundamentals relevant to network security.</p>
+      <div class="tag-row">
+        <span class="tag">Machine Learning</span><span class="tag">Python</span><span class="tag">Feature Extraction</span>
+      </div>
+      <div class="link-row">
+        <!-- TODO: replace # with your Google Drive share link -->
+        <a href="#" target="_blank" id="malwareLink"><i class="fas fa-arrow-up-right-from-square"></i> View Project</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience" class="section wrap">
+  <div class="eyebrow">04 · Experience</div>
+  <h2>Route history</h2>
+  <div class="exp-card">
+    <div class="exp-top">
+      <h3>Frontend Developer Intern — Cybotronics Pvt. Ltd.</h3>
+      <span class="exp-date">2025 – 2026 (1 Year)</span>
+    </div>
+    <ul>
+      <li>Collaborated with a cross-functional team using Git, GitHub, and Docker in a Linux-based development workflow, building comfort with command-line tools and containerized environments.</li>
+      <li>Developed and integrated REST APIs, gaining practical exposure to client-server communication and troubleshooting connectivity issues end-to-end.</li>
+      <li>Modified dashboard UI and implemented reusable frontend components in a fast-paced, deadline-driven team setting.</li>
+    </ul>
+  </div>
+
+  <div class="eyebrow" style="margin-top:36px;">Education</div>
+  <div class="grid-2" style="margin-bottom:28px;">
+    <div class="card">
+      <i class="fas fa-graduation-cap"></i>
+      <h3>Master of Computer Applications (MCA)</h3>
+      <p>Dr. D. Y. Patil University, Kolhapur | 2026 | 81.15%</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-graduation-cap"></i>
+      <h3>Bachelor of Computer Applications (BCA)</h3>
+      <p>Shivaji University, Kolhapur | 2024 | 75%</p>
+    </div>
+  </div>
+
+  <div class="eyebrow">Certifications</div>
+  <div class="cert-row">
+    <div class="cert"><i class="fas fa-shield-halved"></i> CCNA</div>
+    <div class="cert"><i class="fas fa-shield-halved"></i> Linux Administration</div>
+    <div class="cert"><i class="fas fa-shield-halved"></i> Cybersecurity Certification</div>
+    <div class="cert"><i class="fas fa-shield-halved"></i> Smart Bridge Full Stack Development</div>
+    <div class="cert"><i class="fas fa-shield-halved"></i> Git &amp; GitHub</div>
+  </div>
+</section>
+
+<section id="contact" class="section wrap">
+  <div class="eyebrow">05 · Contact</div>
+  <h2>Let's connect the dots</h2>
+  <div class="contact-card">
+    <a href="mailto:utkarshadesai2003@gmail.com"><i class="fas fa-envelope"></i> utkarshadesai2003@gmail.com</a>
+    <span><i class="fas fa-phone"></i> +91 96997 15843</span>
+    <span><i class="fas fa-location-dot"></i> Pune, Maharashtra, India</span>
+    <a href="https://github.com/utkarshadesai2003" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    <a href="https://www.linkedin.com/in/utkarsha-desai-3b345933b/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+  </div>
+  <div class="social-row">
+    <a href="https://github.com/utkarshadesai2003" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/utkarsha-desai-3b345933b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:utkarshadesai2003@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</section>
+
+<footer>
+  <i class="fas fa-code-branch"></i> © <span id="year"></span> Utkarsha Desai · built with HTML, CSS &amp; JS
+</footer>
+
+<script>
+  function toggleMenu(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+    const icon = document.getElementById('menuIcon');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const full = "$ whoami\\nUtkarsha Desai — routes packets by day, ships UI by night.";
+  const el = document.getElementById('terminalText');
+  let i = 0;
+  function type(){
+    if(i <= full.length){
+      el.textContent = full.slice(0, i).replace("\\n", "\n");
+      i++;
+      setTimeout(type, 22);
+    }
+  }
+  type();
+</script>
+
+</body>
+</html>
